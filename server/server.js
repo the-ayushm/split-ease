@@ -16,6 +16,7 @@ app.use(cookieParser())
 // ROUTES 
 
 app.use("/api/auth", authRoutes)
+app.use("/api/group", groupRoutes) 
 
 
 const PORT = process.env.PORT || 5000;
