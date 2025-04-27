@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import connectToMongoDb from './db/connectedToMongoDb.js'
 import authRoutes from './routes/auth.routes.js'
+import groupRoutes from './routes/group.routes.js' 
 
 const app = express()
 app.use(cors({

@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose';
 
 const groupSchema = new mongoose.Schema({
@@ -23,7 +22,14 @@ const groupSchema = new mongoose.Schema({
   expenses: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Expense'
-  }]
+  }],
+  code: {
+    type: String,
+    unique: true
+  },
+  codeExpiresAt: {
+    type: Date
+  }
 }, { timestamps: true });
 
 const Group = mongoose.model('Group', groupSchema);

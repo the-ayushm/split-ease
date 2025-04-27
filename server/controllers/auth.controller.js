@@ -3,9 +3,9 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 import bcrypt from "bcryptjs";
 
 
-export const signUp = async (req, res) => {
+export const signup = async (req, res) => {
     try {
-        const { firstName, lastName, email, phone, password, confirmPassword } = req.body;
+        const { name, email, phone, password, confirmPassword } = req.body;
         if (password !== confirmPassword) {
             return res.status(400).json({
                 error: 'Password do not match!'
@@ -26,8 +26,7 @@ export const signUp = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         const newUser = new User({
-            firstName,
-            lastName,
+           name,
             email,
             phone,
             password: hashedPassword
@@ -38,8 +37,7 @@ export const signUp = async (req, res) => {
             await newUser.save()
             res.status(201).json({
                 _id: newUser._id,
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
+                name: newUser.name, 
                 email: newUser.email,
                 phone: newUser.phone
             })
@@ -57,7 +55,7 @@ export const signUp = async (req, res) => {
     }
 }
 
-export const login = async (req, res) => {
+export const signin = async (req, res) => {
     try {
 
 
@@ -76,8 +74,7 @@ export const login = async (req, res) => {
         res.status(200).json({
             message: "Logged in successfully!",
             _id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
+            name: user.name,
             email: user.email,
             phone: user.phone
         })
@@ -89,7 +86,7 @@ export const login = async (req, res) => {
     }
 }
 
-export const logout = (req, res) => {
+export const signout = (req, res) => {
     res.cookie("token", "", { maxAge: 0 })
     res.status(200).json({
         message: "Logged out successfully!"

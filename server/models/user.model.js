@@ -1,11 +1,7 @@
 import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
+    name: {
         type: String,
         required: true
     },
@@ -32,10 +28,7 @@ const userSchema = new mongoose.Schema({
         ref: 'Group'
     }
     ]
-
-
-
 }, { timestamps: true })
 
 const User = mongoose.model("User", userSchema)
-export default User 
+export default User  
